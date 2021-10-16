@@ -21,5 +21,5 @@ db.mongoose.connect(db.url, {
 var port = process.env.port || 3000
 
 app.listen(port, () => {
-    console.log(`Server live on http://127.0.0.1:${port}`)
+    console.log(`Server live on http://127.0.0.1:${port}/register.html`)
 })
