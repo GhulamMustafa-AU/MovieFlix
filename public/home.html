@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Movies App</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">MovieFlix</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="search-collapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="search-collapse">
+            <form class="form-inline ml-auto" id="search-form">
+                <input type="search" name="search" class="form-control mx-2" id = "search-bar">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row pt-2 pb-1 pl-5 mb-5 bg-info text-white">
+            <h6 style="font-weight: 400;">Greetings, <span id="user_name">Username</span>!</h6>
+        </div>
+    </div>
+
+    <div class="container">
+  
+        <div id="output" class="row"></div>
+    </div>
+    
+    <script src="./javascript/main.js"></script>
+  
+</body>
+</html>

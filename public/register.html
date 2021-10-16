@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Registration</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-6 mx-auto">
+                <div class="output"></div>
+                <h2>Registration Form</h2>
+                <form class="mt-4 needs-validation" id="registration-form" novalidate>
+                      <div class="form-group mx-auto">
+                        <label for="full-name-input" class="form-label">Full Name</label>
+                        <input type="text" name="full_name"  placeholder="Full Name" class="form-control" id="full-name-input" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group mx-auto">
+                        <label for="email-input" class="form-label">Email</label>
+                        <input type="email" name="email"  placeholder="Email" class="form-control" id="email-input" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this in the correct format.</div>
+                    </div> 
+                    <div class="form-group ">
+                        <label for="password-input"  class="form-label">Password</label>
+                        <input type="password" name="password"  placeholder="Password" class="form-control" id="password-input" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="confirm-password-input"  class="form-label">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" id="confirm-password-input" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="./login.html" class="btn btn-primary">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function (){
+            $(document).ready(() => {
+                $("#registration-form").on("submit", (e) => {
+                    e.preventDefault()
+
+                    $(".needs-validation")[0].classList.add("was-validated")
+
+                    username = $('#full-name-input').val()
+                    email = $('#email-input').val()
+                    password = $('#password-input').val()
+                    confirm = $('#confirm-password-input').val()
+
+                    $.post('/register', { username: username, email: email, password: password, confirmPassword: confirm})
+                        .done((response) => {
+                            if(response.error){
+                                output = ` 
+                                <div class="alert alert-danger alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    ${response.error}
+                                </div>
+                                `
+                                $('.output').html(output)
+                            }else if(response.success){
+                                output = ` 
+                                <div class="alert alert-success alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    ${response.success}
+                                </div>
+                                `
+                                $('.output').html(output)                            }
+                        })
+                        .fail(() => {
+                            alert( "POST error" );
+                        })
+                })
+            })
+        }());
+    </script>
+</body>
+</html>
